@@ -21,14 +21,17 @@ public class Post {
     @Column
     private String pic;
     
+    @Column
+    private int isProject;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="course_id")
     private Course course;
     
     
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar timestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
     
     @OneToMany(mappedBy="post")
     private List<Comment> comments = new ArrayList<>();
@@ -36,19 +39,21 @@ public class Post {
     @OneToMany(mappedBy="post")
     private List<Like> likes = new ArrayList<>();
 
+    public Post()
+    {
+    	
+    }
     
-    
-	public Post(Integer post_id, User user, String post, String pic, Course course, Calendar timestamp,
-			List<Comment> comments, List<Like> likes) {
+	public Post( User user, String post, String pic, Course course,int isProject,Date timestamp
+			) {
 		super();
-		this.post_id = post_id;
+
 		this.user = user;
 		this.post = post;
 		this.pic = pic;
 		this.course = course;
+		this.isProject = isProject;
 		this.timestamp = timestamp;
-		this.comments = comments;
-		this.likes = likes;
 	}
 
 	public Integer getPost_id() {
@@ -91,11 +96,11 @@ public class Post {
 		this.course = course;
 	}
 
-	public Calendar getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Calendar timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 

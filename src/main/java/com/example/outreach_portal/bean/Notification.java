@@ -2,6 +2,7 @@ package com.example.outreach_portal.bean;
 
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -27,17 +28,33 @@ public class Notification {
     private int pid;
     
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar timestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
 
-	public Notification(Integer id, User user, String notification, String type, int pid, Calendar timestamp) {
+    
+    public Notification()
+    {
+    	
+    }
+    
+	public Notification(User user, String notification, String type, int pid, Date timestamp) {
 		super();
-		this.id = id;
+		
 		this.user = user;
 		this.notification = notification;
 		this.type = type;
 		this.pid = pid;
 		this.timestamp = timestamp;
+	
+	}
+	public Notification( User user, String notification, String type,Date timestamp) {
+		super();
+		
+		this.user = user;
+		this.notification = notification;
+		this.type = type;
+		this.timestamp = timestamp;
+		
 	}
 
 	public Integer getId() {
@@ -80,11 +97,11 @@ public class Notification {
 		this.pid = pid;
 	}
 
-	public Calendar getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Calendar timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 

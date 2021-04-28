@@ -3,6 +3,7 @@ package com.example.outreach_portal.bean;
 
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class Message {
 	
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="sender")
-    private User user;
+    private User user1;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="reciever")
@@ -26,20 +27,35 @@ public class Message {
     @Column(nullable=false)
     private String message;
     
-
+    @Column(nullable=false)
+    private int status;
     
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar timestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
+    
+    
 
+    public int getStatus() {
+		return status;
+	}
 
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
-	public Message(Integer id, User user, User user2, String message, Calendar timestamp) {
+	public Message()
+    {
+    	
+    }
+
+	public Message( User user, User user2, String message,int status, Date timestamp) {
 		super();
-		this.id = id;
-		this.user = user;
+	
+		this.user1 = user;
 		this.user2 = user2;
 		this.message = message;
+		this.status = status;
 		this.timestamp = timestamp;
 	}
 
@@ -57,14 +73,14 @@ public class Message {
 
 
 
-	public User getUser() {
-		return user;
+	public User getUser1() {
+		return user1;
 	}
 
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser1(User user) {
+		this.user1 = user;
 	}
 
 
@@ -93,13 +109,13 @@ public class Message {
 
 
 
-	public Calendar getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
 
 
-	public void setTimestamp(Calendar timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 	

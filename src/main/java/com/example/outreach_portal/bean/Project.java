@@ -2,6 +2,7 @@ package com.example.outreach_portal.bean;
 
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -21,15 +22,47 @@ public class Project {
     private Post post;
 	
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar timestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="course_id")
+    private Course Course;
     
-	public Project(Integer id, Post post, Calendar timestamp) {
+    public Project()
+    {
+    	
+    }
+    
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Course getCourse() {
+		return Course;
+	}
+
+	public void setCourse(Course course) {
+		Course = course;
+	}
+
+	public Project(String title,Post post, Date timestamp) {
 		super();
-		this.id = id;
+		this.title = title;
 		this.post = post;
 		this.timestamp = timestamp;
+	}
+
+	public Project(String title, Post post, Date timestamp, com.example.outreach_portal.bean.Course course) {
+		super();
+		this.title = title;
+		this.post = post;
+		this.timestamp = timestamp;
+		Course = course;
 	}
 
 	public Integer getId() {
@@ -48,11 +81,11 @@ public class Project {
 		this.post = post;
 	}
 
-	public Calendar getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Calendar timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 	

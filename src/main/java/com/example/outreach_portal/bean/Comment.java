@@ -1,6 +1,7 @@
 package com.example.outreach_portal.bean;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -24,12 +25,16 @@ public class Comment {
     private String comment;
     
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar timestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
 
-	public Comment(Integer id, Post post, User user, String comment, Calendar timestamp) {
+    public Comment()
+    {
+    	
+    }
+	public Comment( Post post, User user, String comment, Date timestamp) {
 		super();
-		this.id = id;
+		
 		this.post = post;
 		this.user = user;
 		this.comment = comment;
@@ -68,11 +73,11 @@ public class Comment {
 		this.comment = comment;
 	}
 
-	public Calendar getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Calendar timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
     

@@ -7,10 +7,10 @@ import javax.persistence.*;
 public class Course {
 	
 	
-	
-	private Integer id;
-	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	@Column(nullable=false,unique=true,length=64)
 	private String cid;
 	
@@ -23,6 +23,10 @@ public class Course {
 	@Column(nullable=false)
 	private String photo;
 
+	public Course()
+	{
+		
+	}
 	public Course(int id, String course_id, String name, String about, String photo) {
 		super();
 		this.id = id;

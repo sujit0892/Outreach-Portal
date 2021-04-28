@@ -20,12 +20,15 @@ public class Friends {
     @Column(nullable=false)
     private int status;
 
+    public Friends()
+    {
+    	
+    }
     
     
-    
-	public Friends(Integer id, User user1, User user2, int status) {
+	public Friends( User user1, User user2, int status) {
 		super();
-		this.id = id;
+		
 		this.user1 = user1;
 		this.user2 = user2;
 		this.status = status;

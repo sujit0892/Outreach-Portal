@@ -1,6 +1,7 @@
 package com.example.outreach_portal.bean;
 import javax.persistence.*;
 
+@Entity
 public class Course_Followers {
 
     @Id
@@ -16,10 +17,14 @@ public class Course_Followers {
     private User user;
 
    
-	public Course_Followers(Integer id, com.example.outreach_portal.bean.Course course, User user) {
+    public Course_Followers()
+    {
+    	
+    }
+	public Course_Followers( com.example.outreach_portal.bean.Course course, User user) {
 		super();
-		this.id = id;
-		Course = course;
+		
+		this.Course = course;
 		this.user = user;
 	}
 

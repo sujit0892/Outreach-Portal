@@ -14,7 +14,9 @@ public class Tag {
 	@Column(nullable=false)
 	private String tag;
 
-	
+	public Tag() {
+		
+	}
 	
 	public Tag(Integer id, String tag) {
 		super();

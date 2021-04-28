@@ -20,6 +20,11 @@ public class project_tag {
     @JoinColumn(name="tid")
     private  Tag tag;
 
+    public project_tag()
+    {
+    	
+    }
+    
 	public project_tag(Integer id, Project project, Tag tag) {
 		super();
 		this.id = id;

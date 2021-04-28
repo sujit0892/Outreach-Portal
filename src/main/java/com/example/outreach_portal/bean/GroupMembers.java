@@ -15,30 +15,24 @@ public class GroupMembers {
 	
 	
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id1")
+    @JoinColumn(name="user_id")
     private User user;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="group_id")
+    private Group group;
 
     
     @Column(nullable=false)
     private int status;
 
 
-	public GroupMembers(Integer id, User user, int status) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.status = status;
-	}
-
-
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public GroupMembers()
+    {
+    	
+    }
+    
+    
 
 
 	public User getUser() {
@@ -51,6 +45,16 @@ public class GroupMembers {
 	}
 
 
+	public Group getGroup() {
+		return group;
+	}
+
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+
 	public int getStatus() {
 		return status;
 	}
@@ -59,7 +63,16 @@ public class GroupMembers {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+
+	public GroupMembers(User user, Group group, int status) {
+		super();
+		this.user = user;
+		this.group = group;
+		this.status = status;
+	}
     
     
 
+	
 }

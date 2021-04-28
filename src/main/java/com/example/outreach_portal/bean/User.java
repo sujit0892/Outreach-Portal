@@ -35,7 +35,23 @@ public class User {
 	@Column
 	private String batch;
 
+
+	@Column(length=2000)
+	private String about;
 	
+	@Column(length=1000)
+	private String interest;
+	
+	
+	
+	@Column 
+	private int status;
+	
+	public User()
+	{
+		
+	}
+
 	public User(int user_id, String email, String password, boolean role, String profile_pic, String name,
 			String program, String roll_no, String batch, String about, String interest, int status) {
 		super();
@@ -199,16 +215,6 @@ public class User {
 
 
 
-	@Column(length=2000)
-	private String about;
-	
-	@Column(nullable=false,length=1000)
-	private String interest;
-	
-	
-	
-	@Column 
-	private int status;
 
 	
 	

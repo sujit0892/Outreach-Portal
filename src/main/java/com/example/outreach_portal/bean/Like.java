@@ -1,6 +1,7 @@
 package com.example.outreach_portal.bean;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -23,16 +24,21 @@ public class Like {
     
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar timestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
 
-
-	public Like(Integer id, Post post, User user, Calendar timestamp) {
+    public Like()
+    {
+    	
+    }
+    
+	public Like(Post post, User user, Date timestamp) {
 		super();
-		this.id = id;
+	
 		this.post = post;
 		this.user = user;
 		this.timestamp = timestamp;
+		
 	}
 
 
@@ -66,12 +72,12 @@ public class Like {
 	}
 
 
-	public Calendar getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
 
-	public void setTimestamp(Calendar timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
     
