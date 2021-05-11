@@ -17,6 +17,7 @@ public class PostJson {
  
     private int course_id;
     private int user_id;
+    
 	public String getPost() {
 		return post;
 	}

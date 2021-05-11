@@ -3,6 +3,8 @@ package com.example.outreach_portal.bean;
 import java.util.*;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="post")
 public class Post {
@@ -34,9 +36,11 @@ public class Post {
     private Date timestamp;
     
     @OneToMany(mappedBy="post")
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
     
     @OneToMany(mappedBy="post")
+    @JsonIgnore
     private List<Like> likes = new ArrayList<>();
 
     public Post()

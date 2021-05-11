@@ -56,7 +56,7 @@ public class PostServiceImp implements PostService {
 	
 	
 	@Override
-	public void createPost(PostJson post) {
+	public int createPost(PostJson post) {
 		try
 		{
 			Course course = null;
@@ -66,10 +66,12 @@ public class PostServiceImp implements PostService {
 			
 			
 			postDao.save(newPost);
+			return newPost.getPost_id();
 		}
 		catch(Exception e)
 		{
 			System.out.println(e.getMessage());
+			return -1;
 		}
 		
 	}
@@ -109,13 +111,14 @@ public class PostServiceImp implements PostService {
 					user,commentJson.getComment(),new Date());
 			
 			Notification notification = new Notification(post.getUser(),user.getName()+
-					"commented on your post","post",commentJson.getPost_id(),new  Date());
-			notificationDao.save(notification);
+					" commented on your post","post",commentJson.getPost_id(),new  Date());
+			if(post.getUser().getUser_id()!=user.getUser_id())
+				notificationDao.save(notification);
 			
 			commentDao.save(comment);
 		}catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 	}
 
@@ -153,10 +156,9 @@ public class PostServiceImp implements PostService {
 
 
 	@Override
-	public List<Post> viewFriendPost(int user_id) {
-		List<User> friends = friendDao.getFriend(profileDao.findById(user_id).get());
-		friends.add(profileDao.findById(user_id).get());
-		return postDao.getAllPost(friends);
+	public List<Post> viewAllPost() {
+		
+		return postDao.getAllPost();
 	}
 	
 	

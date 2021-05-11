@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.outreach_portal.JSONEntity.LoginJson;
 import com.example.outreach_portal.JSONEntity.UpdateProfileJson;
+import com.example.outreach_portal.bean.Notification;
 import com.example.outreach_portal.bean.User;
+import com.example.outreach_portal.dao.NotificationDao;
 import com.example.outreach_portal.dao.ProfileDao;
 import com.example.outreach_portal.service.ProfileService;
 
@@ -18,6 +20,9 @@ public class ProfileServiceImplementation implements ProfileService {
 
 	@Autowired
 	private ProfileDao profileDao;
+	
+	@Autowired
+	NotificationDao notificationDao;
 	
 	@Override
 	public boolean createProfile(User user) {
@@ -53,21 +58,58 @@ public class ProfileServiceImplementation implements ProfileService {
 		return users;
 		
 	}
-	@Override
-	public void updateProfile(UpdateProfileJson user) {
-		
-		profileDao.updateAbout(user.getAbout(), user.getUser_id());
-		profileDao.updateInterest(user.getInterest(), user.getUser_id());
-		profileDao.updateProfile_pic(user.getProfile_pic(), user.getUser_id());
-		profileDao.updatePassword(user.getPassword(), user.getUser_id());
-		
-	}
+
 	
 	@Override
 	public int login(LoginJson loginDetail)
 	{
 		return profileDao.login(loginDetail.getEmail(), loginDetail.getPassword());
 	}
+	@Override
+	public List<Notification> getNotifiaction(int user_id) {
+		User user = profileDao.findById(user_id).get();
+		return notificationDao.getNotification(user);
+	}
+	@Override
+	public void updateNotification(int user_id) {
+		User user = profileDao.findById(user_id).get();
+		notificationDao.updateNotification(user);
+		
+	}
+	@Override
+	public int getNotificationStat(int user_id) {
+		User user = profileDao.findById(user_id).get();
+		List<Notification> not = notificationDao.getNotificationStat(user);
+		if(not.size()==0)
+			return 0;
+		else
+			return 1;
+	}
+	@Override
+	public void updateProfilePic(UpdateProfileJson data) {
+		profileDao.updateProfile_pic(data.getValue(), data.getUser_id());
+		
+	}
+	@Override
+	public void updateAbout(UpdateProfileJson data) {
+		// TODO Auto-generated method stub
+		profileDao.updateAbout(data.getValue(), data.getUser_id());
+		
+	}
+	@Override
+	public void updateInterest(UpdateProfileJson data) {
+		// TODO Auto-generated method stub
+		profileDao.updateInterest(data.getValue(), data.getUser_id());
+		
+	}
+	@Override
+	public void updatePassword(UpdateProfileJson data) {
+		// TODO Auto-generated method stub
+		profileDao.updatePassword(data.getValue(), data.getUser_id());
+		
+	}
+	
+	
 	
 	
 	

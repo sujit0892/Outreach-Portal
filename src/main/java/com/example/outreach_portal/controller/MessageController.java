@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.example.outreach_portal.JSONEntity.RecentMessageJson;
 import com.example.outreach_portal.bean.Message;
 import com.example.outreach_portal.service.MessageService;
 
+@CrossOrigin(origins="*")
 @RestController
 public class MessageController {
 

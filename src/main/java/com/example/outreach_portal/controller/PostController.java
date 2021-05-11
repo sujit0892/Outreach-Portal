@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.example.outreach_portal.bean.Post;
 import com.example.outreach_portal.bean.User;
 import com.example.outreach_portal.service.PostService;
 
+@CrossOrigin(origins="*")
 @RestController
 public class PostController {
 	
@@ -31,9 +33,8 @@ public class PostController {
 	{
 		try
 		{
-			this.postService.createPost(post);
-			
-			return new ResponseEntity<>(true,HttpStatus.OK);
+			int post_id=this.postService.createPost(post);
+			return new ResponseEntity<>(post_id,HttpStatus.OK);
 		}
 		catch(Exception e)
 		{
@@ -78,12 +79,12 @@ public class PostController {
 		
 	}
 	
-	@PostMapping(path="/getAllPost")
-	public ResponseEntity<?> getAllPost(@RequestBody String user_id)
+	@GetMapping(path="/getAllPost")
+	public ResponseEntity<?> getAllPost()
 	{
 		try
 		{
-			List<Post> post = this.postService.viewFriendPost(Integer.parseInt(user_id));
+			List<Post> post = this.postService.viewAllPost();
 			
 			return new ResponseEntity<>(post,HttpStatus.OK);
 		}

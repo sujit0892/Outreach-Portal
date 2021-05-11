@@ -13,6 +13,6 @@ import com.example.outreach_portal.bean.User;
 
 public interface CommentDao extends JpaRepository<Comment,Integer>{
 
-	@Query("SELECT l FROM Comment l WHERE l.post = :post")
+	@Query("SELECT l FROM Comment l WHERE l.post = :post order by l.timestamp")
 	List<Comment> viewComment(@Param("post") Post post);
 }

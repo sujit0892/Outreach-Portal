@@ -27,6 +27,9 @@ public class Notification {
     @Column 
     private int pid;
     
+    @Column
+    private int stat;
+    
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
@@ -45,6 +48,7 @@ public class Notification {
 		this.type = type;
 		this.pid = pid;
 		this.timestamp = timestamp;
+		this.stat=0;
 	
 	}
 	public Notification( User user, String notification, String type,Date timestamp) {
@@ -54,7 +58,16 @@ public class Notification {
 		this.notification = notification;
 		this.type = type;
 		this.timestamp = timestamp;
+		this.stat=0;
 		
+	}
+
+	public int getStat() {
+		return stat;
+	}
+
+	public void setStat(int stat) {
+		this.stat = stat;
 	}
 
 	public Integer getId() {
