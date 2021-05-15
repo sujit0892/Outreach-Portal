@@ -32,7 +32,7 @@ public class ProjectSeviceImp implements ProjectService{
 	@Override
 	public List<Project> getProject() {
 		
-		return projectDao.findAll();
+		return projectDao.getProject();
 	}
 
 	@Override

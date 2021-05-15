@@ -11,8 +11,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
+import com.example.outreach_portal.bean.Course;
+import com.example.outreach_portal.bean.Course_Followers;
+import com.example.outreach_portal.bean.Course_Instructor;
 import com.example.outreach_portal.bean.User;
 import com.example.outreach_portal.bean.project_tag;
+import com.example.outreach_portal.dao.CourseDao;
+import com.example.outreach_portal.dao.CourseFollowerDao;
+import com.example.outreach_portal.dao.CourseInstructor;
+import com.example.outreach_portal.dao.CourseInstructorDao;
 import com.example.outreach_portal.dao.ProfileDao;
 import com.example.outreach_portal.service.Implementation.ProfileServiceImplementation;
 
@@ -22,6 +29,15 @@ public class OutreachPortalApplication {
 	
 	@Autowired
 	ProfileDao profileDao;
+	
+	@Autowired
+	CourseDao courseDao;
+	
+	@Autowired
+	CourseInstructorDao courseInstructorDao;
+	
+	@Autowired
+	CourseFollowerDao courseFollowerDao;
 	
 	public static void main(String[] args) {
 		
@@ -43,7 +59,16 @@ public class OutreachPortalApplication {
 	    	
 	    	profileDao.save(new User(103, "abc@iiitb.org", "12345678",true,"https://firebasestorage.googleapis.com/v0/b/outreach-portal-8d2c2.appspot.com/o/abc.png?alt=media&token=11511c26-c594-4d2f-9b41-bdd2a2e17ca9", "Abc",
 					"","", "", "", "",1));
-	   	
+	    	
+	    	courseDao.save(new Course(100,"CS816","Data Modelling","Course on Data Model"));
+//	    	courseInstructorDao.save(new Course_Instructor(courseDao.findById(100).get(),profileDao.findById(103).get()));
+//	    	courseFollowerDao.save(new Course_Followers(courseDao.findById(100).get(),profileDao.findById(101).get()));
+//	    	courseFollowerDao.save(new Course_Followers(courseDao.findById(100).get(),profileDao.findById(103).get()));
+	    	courseDao.save(new Course(101,"CS829","SPE","Course on SPE"));
+//	    	courseInstructorDao.save(new Course_Instructor(courseDao.findById(101).get(),profileDao.findById(103).get()));
+//	    	courseFollowerDao.save(new Course_Followers(courseDao.findById(101).get(),profileDao.findById(101).get()));
+//	    	courseFollowerDao.save(new Course_Followers(courseDao.findById(101).get(),profileDao.findById(103).get()));
+//		   	
 	      };
 	   }
 	
