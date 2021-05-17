@@ -25,7 +25,7 @@ public class MessageController {
 	@Autowired
 	private MessageService msgService;
 	
-	@GetMapping(path="/getMsg")
+	@PostMapping(path="/getMsg")
 	public ResponseEntity<?> getMsg(@RequestBody FriendJson friend)
 	{
 		try

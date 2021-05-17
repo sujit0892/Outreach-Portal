@@ -16,7 +16,7 @@ public interface PostDao extends JpaRepository<Post,Integer>{
 	@Query("SELECT p FROM Post p WHERE p.user = :user and p.course= null and isProject=0")
 	List<Post> getUserPost(@Param("user") User user);
 	
-	@Query("SELECT p FROM Post p WHERE p.course= null and isProject=1 order by p.timestamp desc")
+	@Query("SELECT p FROM Post p WHERE p.course= null order by p.timestamp desc")
 	List<Post> getAllPost();
 	
 	
